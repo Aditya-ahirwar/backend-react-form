@@ -3,7 +3,8 @@ import User from "../model/User.js";
 
 
 export const getUser = async (req, res,) => {
-    const user = await User.findOne({ id: req.id });
+    const user = await User.findById({ _id: req.params.id });
+    // console.log(req.params.id)
     if(!user) res.status(400).send("user not found");
     const { password, ...others } = user._doc;
     res.send(others);
